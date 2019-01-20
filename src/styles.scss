@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+@import "src/assets/scss/colors.scss";
+
+::placeholder {
+  color:$grey1;
+  font-size:90%;
+}
+:-ms-input-placeholder{
+  color:$grey1;
+  font-size:90%;
+}
+::-ms-input-placeholder{
+  color:$grey1;
+  font-size:90%;
+}
+
+hr  {
+  margin-top:0.5rem !important;
+  margin-bottom:0.5rem !important;
+  border-top:solid 2px $secondary !important;
+}
+
+.header {
+  margin-bottom: 30px;
+  text-align: center;
+  h4  {
+    color:$header;
+  }
+}
+
+.success  {
+  background-color: $green;
+}
+
+.error  {
+  background-color: $red;
+}
+
+.feedback {
+  color:white;
+}
+
+.form {
+  input,textarea {
+    border-radius:0px;
+    box-shadow: rgba(46, 60, 73, 0.05) 0px 2px 2px 0px;
+    &:focus {
+      box-shadow:none;
+      border-color: $primary;
+    }
+  }
+}
+
+
+.form {
+  button  {
+    background-color: $primary;
+    margin-top:20px;
+    color:white;
+    border-radius: 0px;
+    box-shadow: rgba(0, 0, 0, 0.1) 12px 15px 20px;
+    &:hover {
+      background-color: $primary;
+    }
+  }
+}

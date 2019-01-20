@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 mt-3 mt-md-5">
+      <div class="fill-form p-3 p-md-4">
+        <div class="header mt-3 mb-4">
+          <h4 class='text-center'>Fill the form to be a guest</h4>
+          <hr>
+        </div>
+
+        <div class="feedback my-3 p-3 error" *ngIf='feedback'>
+          {{feedbackMessage}}
+          <a class='close' (click)='closeFeedback()'>&times;</a>
+        </div>
+
+        <form class="form" [formGroup]='gbForm' action="index.html" method="post">
+          <div class="form-group">
+            <input type="text" class='form-control' [class.is-invalid]='lastname.invalid && isSubmit' formControlName='lastname' placeholder='Lastname' name="" value="">
+            <div class="" *ngIf='lastname?.errors'>
+              <small *ngIf='lastname.errors?.required && isSubmit' class='text-danger'>This field is required</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class='form-control' [class.is-invalid]='firstname.invalid && isSubmit' formControlName='firstname' placeholder='Firstname' name="" value="">
+            <div class="" *ngIf='firstname?.errors'>
+              <small *ngIf='firstname.errors?.required && isSubmit' class='text-danger'>This field is required</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="email" class='form-control' [class.is-invalid]='email.invalid && isSubmit' formControlName='email' placeholder='Email' name="" value="">
+            <div class="" *ngIf='email?.errors'>
+              <small *ngIf='email.errors?.required && isSubmit' class='text-danger'>This field is required</small>
+              <small *ngIf='!email.errors?.required && isSubmit && email.errors?.patternFail' class='text-danger'>Invalid Email</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class='form-control' [class.is-invalid]='location.invalid && isSubmit' formControlName='location' placeholder='Location' name="" value="">
+            <div class="" *ngIf='location?.errors'>
+              <small *ngIf='location.errors?.required && isSubmit' class='text-danger'>This field is required</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class='form-control' [class.is-invalid]='mobile_no.invalid && isSubmit' formControlName='mobile_no' placeholder='Mobile Number' name="" value="">
+            <div class="" *ngIf='mobile_no?.errors'>
+              <small *ngIf='mobile_no.errors?.required && isSubmit' class='text-danger'>This field is required</small>
+              <small *ngIf='!mobile_no.errors?.required && isSubmit && mobile_no.errors?.patternFail' class='text-danger'>Invalid Mobile Number</small>
+            </div>
+          </div>
+          <div class="buttons row">
+            <div class="col-6">
+              <button type="button" class='btn btn-block' name="button" (click)='onSubmit()'>Submit</button>
+            </div>
+            <div class="col-6">
+              <button type="button" class='btn btn-block' name="button" (click)='gbForm.reset(); isSubmit=false'>Reset</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

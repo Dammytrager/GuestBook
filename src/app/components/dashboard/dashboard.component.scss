@@ -1,0 +1,19 @@
+@import "../../../assets/scss/colors.scss";
+
+.container  {
+  .header-links {
+    ul  {
+      width:100%;
+      border-bottom: solid 0.1px $border;
+      .nav-item {
+        a {
+          color:$header;
+          font-size:15px;
+          @media (max-width: 575px) {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}
