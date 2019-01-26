@@ -8,7 +8,10 @@ const routes: Routes = [
   {path:'admin', component:AdminComponent},
   {path:'home', component:HomeComponent},
   {path:'admin/sign-in', component:AdminComponent},
-  {path:'admin/dashboard', component:AdminComponent}
+  {path:'admin/dashboard', component:AdminComponent},
+  {path:'admin/dashboard/recent-activities', component:AdminComponent},
+  {path:'admin/dashboard/view-guests', component:AdminComponent},
+  {path:'admin/dashboard/settings', component:AdminComponent}
 ];
 
 @NgModule({

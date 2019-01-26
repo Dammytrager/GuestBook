@@ -1,0 +1,31 @@
+@import "../../../assets/scss/colors.scss";
+
+.gb-recent  {
+  margin-top: 30px;
+  .feeds  {
+    color:$primary;
+    margin-bottom: 30px;
+  }
+  .cont {
+    border-bottom: solid 1px $border;
+    &:hover {
+      background-color: $bg-light;
+    }
+  }
+  .icon {
+    margin-top: 10px;
+    margin-left:5px;
+    color:$primary;
+    height:30px;
+  }
+  .details  {
+    padding:10px;
+    .who  {
+      margin-bottom:4px;
+    }
+      .time {
+        font-size: 90%;
+        color:$grey1;
+      }
+  }
+}

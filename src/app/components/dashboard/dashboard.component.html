@@ -1,21 +1,33 @@
 <div class="container mt-3 mt-md-4">
   <div class="header-links">
     <ul class="nav justify-content-center justify-content-sm-start">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink=''>
+      <li class="nav-item" [class.active]='recent'>
+        <a class="nav-link" routerLink='/admin/dashboard/recent-activities'>
           <fa-icon [icon]='faHistory'></fa-icon> &nbsp; <span class='d-none d-sm-inline-block'>Recent Activity</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink=''>
+      <li class="nav-item" [class.active]='view'>
+        <a class="nav-link" routerLink='/admin/dashboard/view-guests'>
           <fa-icon [icon]='faList'></fa-icon> &nbsp; <span class='d-none d-sm-inline-block'>View Guests</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink=''>
+      <li class="nav-item" [class.active]='setting'>
+        <a class="nav-link" routerLink='/admin/dashboard/settings'>
           <fa-icon [icon]='faCog'></fa-icon> &nbsp; <span class='d-none d-sm-inline-block'>Account Settings</span>
         </a>
       </li>
     </ul>
   </div>
+</div>
+
+<div class="" *ngIf='recent'>
+  <gb-recent></gb-recent>
+</div>
+
+<div class="" *ngIf='view'>
+  <gb-view></gb-view>
+</div>
+
+<div class="" *ngIf='setting'>
+  <gb-settings></gb-settings>
 </div>

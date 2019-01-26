@@ -1,0 +1,18 @@
+<div class="container gb-recent">
+  <p class='feeds'>Activity Feeds</p>
+  <gb-loader *ngIf="showLoader"></gb-loader>
+  <div class="d-flex cont" *ngFor='let recent of recentActivities'>
+    <div class="icon">
+      <fa-icon [icon]="faHistory"></fa-icon>
+    </div>
+    <div class="details">
+
+      <div class="who">
+        <b>{{recent.lastname}} {{recent.firstname}}</b> signed your GuestBook
+      </div>
+      <div class="time">
+        {{setDate(recent.timestamp)}}
+      </div>
+    </div>
+  </div>
+</div>

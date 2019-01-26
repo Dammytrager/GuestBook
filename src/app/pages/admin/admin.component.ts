@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'gb-admin',
@@ -20,9 +20,6 @@ export class AdminComponent implements OnInit {
   setState(){
     if(this.signIn){
       this.router.navigate(['/admin/sign-in'])
-    }
-    else{
-      this.router.navigate(['/admin/dashboard'])
     }
   }
 

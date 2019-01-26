@@ -14,6 +14,11 @@ import { RapComponent } from './components/rap/rap.component';
 import { ViewComponent } from './components/view/view.component';
 import { ChangeComponent } from './components/change/change.component';
 import { RouterModule } from '@angular/router';
+import { RecentComponent } from './components/recent/recent.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpService } from './service/http.service';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +31,9 @@ import { RouterModule } from '@angular/router';
     RapComponent,
     ViewComponent,
     ChangeComponent,
+    RecentComponent,
+    SettingsComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +41,12 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    HttpService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
