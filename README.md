@@ -1,5 +1,28 @@
 # GBFE
 
+This is a simple application that allows users to register on a guestbook and an admin to manage the registered users
+
+##Life Demo
+
+#### User
+https://guestbook-fe.herokuapp.com
+
+#### Admin
+
+https://guestbook-fe.herokuapp.com/admin
+
+**Username**: admin
+
+**Password**: admin
+
+##Admin Priviledges
+
+* View Recent Activities (Guests who just joined)
+* View all registered Guests
+* Remove Guests
+
+##Development Information
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
 
 ## Development server

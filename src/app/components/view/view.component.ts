@@ -59,6 +59,7 @@ export class ViewComponent implements OnInit, AfterViewInit, AfterContentInit {
     }
 
     onSelect(guest: IGuest) {
+        this.quest = false;
         this.Guest = guest;
     }
 
