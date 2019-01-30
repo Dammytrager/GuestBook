@@ -32,20 +32,13 @@ export class ViewComponent implements OnInit, AfterViewInit, AfterContentInit {
     private url = '../../../assets/dummy/guests.json';
 
     constructor(private http: HttpService) {
-    }
-
-    ngOnInit() {
         this.getGuests(this.url);
     }
 
+    ngOnInit() {
+    }
+
     ngAfterViewInit() {
-        $(document).ready(function () {
-            $('#guestsTable').dataTable();
-            $('.dataTables_length').addClass('bs-select');
-            $('.guests').click(function () {
-                $('#guestModal').modal('show');
-            });
-        });
     }
 
 
@@ -57,6 +50,7 @@ export class ViewComponent implements OnInit, AfterViewInit, AfterContentInit {
             .then((data: any) => {
                 console.log(data);
                 this.Guests = data.data;
+                this.initGuests();
                 return true;
             })
             .catch((error) => {
@@ -66,6 +60,16 @@ export class ViewComponent implements OnInit, AfterViewInit, AfterContentInit {
 
     onSelect(guest: IGuest) {
         this.Guest = guest;
+    }
+
+    initGuests(){
+        $(document).ready(function () {
+            $('.guestsTable').dataTable();
+            $('.dataTables_length').addClass('bs-select');
+            $('.guests').click(function () {
+                $('#guestModal').modal('show');
+            });
+        });
     }
 
 }

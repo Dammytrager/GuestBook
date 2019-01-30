@@ -5,7 +5,7 @@
       <div>Total <span class="length">{{Guests?.length}}</span></div>
     </div>
     <div class="card-body">
-      <table id="guestsTable" class="table guestsTable borderless table-hover table-md-responsive">
+      <table id="guestsTable" [class.guestsTable]="Guests" class="table borderless table-hover table-md-responsive">
         <thead class="">
         <tr>
           <th class="th-sm">Lastname</th>
