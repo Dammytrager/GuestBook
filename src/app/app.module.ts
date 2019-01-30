@@ -19,6 +19,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './service/http.service';
 import { LoaderComponent } from './components/loader/loader.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     ChangeComponent,
     RecentComponent,
     SettingsComponent,
-    LoaderComponent
+    LoaderComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

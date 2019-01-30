@@ -20,6 +20,29 @@ hr  {
   border-top:solid 2px $secondary !important;
 }
 
+li.paginate_button.page-item.active {
+  a{
+    background-color: $primary;
+  }
+}
+
+a.page-link {
+  color: $primary;
+  font-size: 85%;
+}
+
+.dataTables_info  {
+  font-weight:bold !important;
+  font-size:85%;
+  color:$primary;
+}
+
+.dataTables_length, .dataTables_filter {
+  label {
+    color:$primary;
+  }
+}
+
 .header {
   margin-bottom: 30px;
   text-align: center;
@@ -40,16 +63,15 @@ hr  {
   color:white;
 }
 
-.form {
-  input,textarea {
-    border-radius:0px;
-    box-shadow: rgba(46, 60, 73, 0.05) 0px 2px 2px 0px;
+
+  input,textarea,select {
+    border-radius:0px !important;
+    box-shadow: rgba(46, 60, 73, 0.05) 0px 2px 2px 0px !important;
     &:focus {
-      box-shadow:none;
-      border-color: $primary;
+      box-shadow:none !important;
+      border-color: $primary !important;
     }
   }
-}
 
 
 .form {
@@ -63,4 +85,8 @@ hr  {
       background-color: $primary;
     }
   }
+}
+
+button  {
+  border-radius: 0px;
 }

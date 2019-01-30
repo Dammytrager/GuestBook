@@ -1,3 +1,105 @@
-<p>
-  view works!
-</p>
+<div class="container gb-view">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between">
+      <div class="header-text"><fa-icon [icon]="faUsers" ></fa-icon> &nbsp; Guests</div>
+      <div>Total <span class="length">{{Guests?.length}}</span></div>
+    </div>
+    <div class="card-body">
+      <table id="guestsTable" class="table guestsTable borderless table-hover table-md-responsive">
+        <thead class="">
+        <tr>
+          <th class="th-sm">Lastname</th>
+          <th class="th-sm">Firstname</th>
+          <th class="th-sm">Email</th>
+          <th class="th-sm">Tel</th>
+          <th class="th-sm">Location</th>
+          <th class="th-sm">Registered on</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let guest of Guests" class="guests" (click)="onSelect(guest)">
+          <td>{{guest.lastname}}</td>
+          <td>{{guest.firstname}}</td>
+          <td>{{guest.email}}</td>
+          <td>{{guest.mobile_no}}</td>
+          <td>{{guest.location}}</td>
+          <td>{{setDate(guest.date)}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="guestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">{{Guest?.lastname}} {{Guest?.firstname}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <b>Lastname</b>
+            </div>
+            <div class="col-6">
+              {{Guest?.lastname}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <b>Firstname</b>
+            </div>
+            <div class="col-6">
+              {{Guest?.firstname}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <b>Email</b>
+            </div>
+            <div class="col-6">
+              {{Guest?.email}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <b>Telephone</b>
+            </div>
+            <div class="col-6">
+              {{Guest?.mobile_no}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <b>Location</b>
+            </div>
+            <div class="col-6">
+              {{Guest?.location}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <b>Registered on</b>
+            </div>
+            <div class="col-6">
+              {{setDate(Guest?.date)}}
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" *ngIf="!quest" class="btn btn-danger" (click)="quest=true">Delete Guest</button>
+          <div class="delete" *ngIf="quest">
+            Are you sure you want to delete this guest?
+            <button type="button" class="btn btn-danger mx-2">Yes</button>
+            <button type="button" class="btn btn-primary" (click)="quest=false">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
