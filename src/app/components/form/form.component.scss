@@ -2,4 +2,7 @@
 
 .fill-form  {
   border:solid 1px $border;
+  .btn  {
+    min-height: 26px !important;
+  }
 }

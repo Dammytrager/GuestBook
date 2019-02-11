@@ -7,7 +7,7 @@
           <hr>
         </div>
 
-        <div class="feedback my-3 p-3 error" *ngIf='feedback'>
+        <div class="feedback my-3 p-3" [class.error]="!isSuccess" [class.success]="isSuccess" *ngIf='feedback'>
           {{feedbackMessage}}
           <a class='close' (click)='closeFeedback()'>&times;</a>
         </div>
@@ -47,10 +47,13 @@
           </div>
           <div class="buttons row">
             <div class="col-6">
-              <button type="button" class='btn btn-block' name="button" (click)='onSubmit()'>Submit</button>
+              <button type="button" class='btn btn-block' [disabled]="isValid" name="button" (click)='onSubmit()'>
+                {{submitBtnText}} &nbsp;
+                <div class="float-right"><gb-loader *ngIf="isValid" [data]="{type: 3}"></gb-loader></div>
+              </button>
             </div>
             <div class="col-6">
-              <button type="button" class='btn btn-block' name="button" (click)='gbForm.reset(); isSubmit=false'>Reset</button>
+              <button type="button" class='btn btn-block' [disabled]="isValid" name="button" (click)='gbForm.reset(); isSubmit=false'>Reset</button>
             </div>
           </div>
         </form>
