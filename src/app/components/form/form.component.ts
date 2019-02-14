@@ -66,7 +66,7 @@ export class FormComponent implements OnInit {
             this.submitBtnText = 'Submitting';
             const data = this.gbForm.value;
             this.http.post(this._url, data)
-                .then((res) => {
+                .then((res: any) => {
                     console.log(res);
                     this.isValid = false;
                     this.submitBtnText = 'Submit';
@@ -74,13 +74,11 @@ export class FormComponent implements OnInit {
                         this.isSuccess = true;
                         this.feedback = true;
                         this.feedbackMessage = 'You have successfully signed my guestbook, Thank you.';
-                    }
-                    else if (res.status_code == '302') {
+                    } else if (res.status_code == '302') {
                         this.feedback = true;
                         this.feedbackMessage = 'This Email is already registered';
                         this.isSuccess = false;
-                    }
-                    else if (res.status_code == '402') {
+                    } else if (res.status_code == '402') {
                         this.feedback = true;
                         this.feedbackMessage = 'This Email is does not exist';
                         this.isSuccess = false;
@@ -90,7 +88,7 @@ export class FormComponent implements OnInit {
                     console.log(error);
                     this.isValid = false;
                     this.submitBtnText = 'Submit';
-                    if(error.status == 0) {
+                    if (error.status == 0) {
                         this.feedback = true;
                         this.feedbackMessage = 'Please Check your connection';
                         this.isSuccess = false;

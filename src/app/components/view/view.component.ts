@@ -2,6 +2,7 @@ import {Component, OnInit, AfterViewInit, AfterContentInit, ViewChild, ElementRe
 import {HttpService} from '../../service/http.service';
 import {setDate} from '../../Functions/myfunction';
 import {faUsers} from '@fortawesome/free-solid-svg-icons';
+import {HttpErrorResponse} from '@angular/common/http';
 
 declare let $: any;
 
@@ -25,14 +26,23 @@ export class ViewComponent implements OnInit, AfterViewInit, AfterContentInit {
 
     table;
     faUsers = faUsers;
-    quest=false;
+    quest = false;
     Guests;
     Guest: IGuest;
     setDate = setDate;
-    private url = '../../../assets/dummy/guests.json';
+    private url = 'https://guestbook-be.herokuapp.com?action=guests';
+    showLoader = true;
+    deleteBtnText = 'Delete Guest';
+    showDeleteLoader = false;
+    isDelete = false;
+    feedback = false;
+    feedbackMessage = 'Please check your connection';
 
     constructor(private http: HttpService) {
         this.getGuests(this.url);
+         setInterval(() => {
+            this.getGuests(this.url);
+         }, 1000);
     }
 
     ngOnInit() {
@@ -45,12 +55,12 @@ export class ViewComponent implements OnInit, AfterViewInit, AfterContentInit {
     ngAfterContentInit(): void {
     }
 
-    async getGuests(url: string) {
-        await this.http.get(url)
+    getGuests(url: string) {
+         this.http.get(url)
             .then((data: any) => {
-                console.log(data);
                 this.Guests = data.data;
                 this.initGuests();
+                this.showLoader = false;
                 return true;
             })
             .catch((error) => {
@@ -63,7 +73,7 @@ export class ViewComponent implements OnInit, AfterViewInit, AfterContentInit {
         this.Guest = guest;
     }
 
-    initGuests(){
+    initGuests() {
         $(document).ready(function () {
             $('.guestsTable').dataTable();
             $('.dataTables_length').addClass('bs-select');
@@ -73,4 +83,27 @@ export class ViewComponent implements OnInit, AfterViewInit, AfterContentInit {
         });
     }
 
+    deleteGuest(id) {
+        this.deleteBtnText = 'Deleting';
+        this.showDeleteLoader = true;
+        this.quest = false;
+        this.http.delete('https://guestbook-be.herokuapp.com?action=delete&id=' + id)
+            .then((data) => {
+                if (data.status === 200) {
+                    console.log(data);
+                    this.deleteBtnText = 'Delete Guest';
+                    this.quest = false;
+                    this.isDelete = true;
+                    this.showDeleteLoader = false;
+                }
+            }).catch((err: HttpErrorResponse) => {
+                if (err.status === 0) {
+                    this.feedback = true;
+                }
+        });
+    }
+
+    closeFeedback() {
+        this.feedback = false;
+    }
 }

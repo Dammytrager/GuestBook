@@ -20,6 +20,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './service/http.service';
 import { LoaderComponent } from './components/loader/loader.component';
 import { TableComponent } from './components/table/table.component';
+import {DevToolsExtension, NgRedux, NgReduxModule} from '@angular-redux/store';
+import {IAppState, INITIAL_STATE, rootReducer} from './store/store';
+import {StoreEnhancer} from 'redux';
+import {environment} from '../environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -44,11 +48,21 @@ import { TableComponent } from './components/table/table.component';
     ReactiveFormsModule,
     FontAwesomeModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    NgReduxModule
   ],
   providers: [
     HttpService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+  constructor(private ngredux: NgRedux<IAppState>,
+              private reduxDevTools: DevToolsExtension) {
+    const enhancers: StoreEnhancer<IAppState>[] = (this.reduxDevTools.isEnabled() && !environment.production)
+        ? [this.reduxDevTools.enhancer()] : [];
+
+    ngredux.configureStore(rootReducer, INITIAL_STATE, [], enhancers);
+  }
+}

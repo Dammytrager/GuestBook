@@ -17,13 +17,16 @@
     height: 32px;
   }
   .borderless {
+    thead {
+      background-color: $primary !important;
+    }
     th,td,tr {
       border:none !important;
     }
     th {
-      color: $primary;
-      font-weight: normal !important;
-      padding:11px 20px;
+      color: white;
+      font-weight: 600 !important;
+      padding: 11px 20px;
     }
     td {
       padding:11px 20px;

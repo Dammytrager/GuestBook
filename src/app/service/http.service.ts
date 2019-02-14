@@ -77,7 +77,7 @@ export class HttpService {
      * @param {object} data
      * @returns {Promise<HttpResponse<any>>}
      */
-    delete(url: string, data: object) {
+    delete(url: string) {
         return this.http.delete(url, {
             headers: this.Headers
         }).pipe(

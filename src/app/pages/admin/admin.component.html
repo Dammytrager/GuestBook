@@ -1,5 +1,6 @@
 <gb-header></gb-header>
 
-<gb-sign-in *ngIf='signIn'></gb-sign-in>
+<gb-sign-in  *ngIf='!(signedIn | async)'></gb-sign-in>
 
-<gb-dashboard *ngIf='!signIn'></gb-dashboard>
+<gb-dashboard *ngIf='(signedIn | async)'></gb-dashboard>
+

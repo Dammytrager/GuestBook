@@ -13,11 +13,14 @@ export class RecentComponent implements OnInit {
     faHistory = faHistory;
     showLoader = true;
 
-    private url: string = '../../../assets/dummy/recent.json';
+    private url: string = 'https://guestbook-be.herokuapp.com?action=guests';
     recentActivities: any = [];
-    setDate=setDate
+    setDate = setDate;
 
     constructor(private http: HttpService) {
+        setInterval(() => {
+            this.getRecentActivity(this.url);
+        }, 1000);
     }
 
     ngOnInit() {

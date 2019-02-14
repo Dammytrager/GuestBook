@@ -19,7 +19,10 @@
             <input type="password" class='form-control' formControlName='password' [class.is-invalid]='password.invalid && isSubmit' placeholder="Password" name="" value="">
             <small class='text-danger' *ngIf='password.errors?.required && isSubmit'>This field is required</small>
           </div>
-          <button type="button" class='btn btn-block' name="button" (click)='onSubmit()'>Sign In</button>
+          <button type="button" [disabled]="isValid" class='btn btn-block' name="button" (click)='onSubmit()'>
+            {{signInBtnText}}
+            <div class="float-right"><gb-loader *ngIf="isValid" [data]="{type: 3}"></gb-loader></div>
+          </button>
         </form>
       </div>
     </div>

@@ -17,6 +17,11 @@
         </tr>
         </thead>
         <tbody>
+        <tr *ngIf="showLoader">
+          <td class="text-center" colspan="6">
+            <gb-loader></gb-loader>
+          </td>
+        </tr>
         <tr *ngFor="let guest of Guests" class="guests" (click)="onSelect(guest)">
           <td>{{guest.lastname}}</td>
           <td>{{guest.firstname}}</td>
@@ -41,60 +46,72 @@
           </button>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <div class="col-6">
-              <b>Lastname</b>
+          <div class="feedback my-3 p-3 error" *ngIf='feedback'>
+            {{feedbackMessage}}
+            <a class='close' (click)='closeFeedback()'>&times;</a>
+          </div>
+          <div *ngIf="!isDelete">
+            <div class="row">
+              <div class="col-6">
+                <b>Lastname</b>
+              </div>
+              <div class="col-6">
+                {{Guest?.lastname}}
+              </div>
             </div>
-            <div class="col-6">
-              {{Guest?.lastname}}
+            <div class="row">
+              <div class="col-6">
+                <b>Firstname</b>
+              </div>
+              <div class="col-6">
+                {{Guest?.firstname}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <b>Email</b>
+              </div>
+              <div class="col-6">
+                {{Guest?.email}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <b>Telephone</b>
+              </div>
+              <div class="col-6">
+                {{Guest?.mobile_no}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <b>Location</b>
+              </div>
+              <div class="col-6">
+                {{Guest?.location}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <b>Registered on</b>
+              </div>
+              <div class="col-6">
+                {{setDate(Guest?.date)}}
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-6">
-              <b>Firstname</b>
-            </div>
-            <div class="col-6">
-              {{Guest?.firstname}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <b>Email</b>
-            </div>
-            <div class="col-6">
-              {{Guest?.email}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <b>Telephone</b>
-            </div>
-            <div class="col-6">
-              {{Guest?.mobile_no}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <b>Location</b>
-            </div>
-            <div class="col-6">
-              {{Guest?.location}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <b>Registered on</b>
-            </div>
-            <div class="col-6">
-              {{setDate(Guest?.date)}}
-            </div>
+          <div *ngIf="isDelete">
+            This guest has been removed
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" *ngIf="!quest" class="btn btn-danger" (click)="quest=true">Delete Guest</button>
+          <button type="button" *ngIf="!quest" class="btn btn-danger" (click)="quest=true">
+            {{deleteBtnText}}
+            <div class="float-right"><gb-loader *ngIf="showDeleteLoader" [data]="{type: 3}"></gb-loader></div>
+          </button>
           <div class="delete" *ngIf="quest">
             Are you sure you want to delete this guest?
-            <button type="button" class="btn btn-danger mx-2">Yes</button>
+            <button type="button" class="btn btn-danger mx-2" (click)="deleteGuest(Guest?.id)">Yes</button>
             <button type="button" class="btn btn-primary" (click)="quest=false">No</button>
           </div>
         </div>
